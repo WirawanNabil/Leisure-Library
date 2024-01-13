@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+    
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    
+        .container {
+            display: flex;
+        }
+    
+        .navigation {
+            width: 230px;
+            background-color: #562B0C;
+            padding: 1px;
+            box-sizing: border-box;
+
+            
+        }
+    
+        .navigation ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px;
+            
+        }
+    
+        .navigation li {
+            margin-bottom: 10px;
+            margin-bottom: 30px;
+            border-radius: 50%;
+            text-align: center;
+        }
+    
+        .navigation a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 2px;
+            padding: 2px;
+            background-color: rgb(143, 73, 73);
+            transition: all 0.3s ease;
+            border-radius:  90%; 
+            text-align: center;
+        }
+    
+        .navigation a:hover {
+            color: #562B0C;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius:  80%; 
+        }
+    
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <img class="logo" src="liblogo.png" alt="Your Library Logo">
+            <ul>
+                <li><a href="LibraryHome.html">Home</a></li>
+                <li><a href="UserAccount.html">User Account</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="facilities.html">Facilities & Services</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="Collection.html">Collection</a></li>
+                <li><a href="ResearchSupport.html">Research Support</a></li>
+                <li><a href="loanbook.html">Loan Book</a></li>
+                <li><a href="returnbook.html">Return Book</a></li>
+                <li><a href="addbook.html">Add Book</a></li>
+                <li><a href="survey.html">Survey</a></li>
+
+            </ul>
+        </div>
+        <div class="content">
+
+ <div class="jumbotron text-center">
+    <h1>FREQUENTLY ASK QUESTIONS</h1> 
+  </div>
+ <div class="faq">
+    <ul>
+    <li><strong>How do I get a library card?<br></strong> To obtain a library card, visit the library's circulation desk with a valid ID and proof of address. The 
+staff will guide you through the application process.</li><br><br>
+    <li><strong>What resources and services does the library offer?<br></strong> The library provides a variety of resources, including books, 
+e-books, audiobooks, digital databases, and services such as workshops, events, and reference assistance.</li><br><br>
+    <li><strong>How can I renew or return borrowed materials?<br></strong> You can renew materials online through your library account or return them to the library's drop-off area. 
+Renewal options and return instructions are available on the library's website.</li><br><br>
+    <li><strong>Is Wi-Fi available in the library?<br></strong> Yes, the library offers free Wi-Fi for patrons. You can connect to the library's network using your 
+device within the library premises.</li><br><br>
+    <li><strong>Are there meeting rooms or study spaces available for reservation?<br></strong> Yes, the library has meeting rooms and study spaces available for reservation. Please check with the library staff for availability and reservation details.</li><br><br>
+    <li><strong>How can I access the library's digital resources from home?<br></strong> You can access the library's digital resources remotely by logging in to your library account on the official website. Follow the provided instructions for accessing e-books, databases, and other digital materials.</li><br><br>
+    <li><strong>How can I donate books or materials to the library?<br></strong> If you wish to donate books or materials to the library, inquire at the circulation desk. The staff will provide information on the library's donation policies and guidelines.</li><br><br>
+    <li><strong>Is there a limit on the number of items I can borrow at one time?<br></strong> The library may have a borrowing limit. Check with the circulation desk or refer to the library's policies on the maximum number of items you can borrow at a time.</li><br><br>
+  </ul>
+  </div>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
+<section class="footer">
+    <p>Leisure Library Sdn. Bhd. |&#169 2023 CSF3133 Net,LLC All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

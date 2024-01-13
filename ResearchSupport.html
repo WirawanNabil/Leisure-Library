@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESEARCH SUPPORT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffcfc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .navigation {
+            width: 15%;
+            background-color: #562B0C;
+            padding: 1px;
+            box-sizing: border-box;
+            height: 100%;
+            position: fixed;
+            
+        }
+
+        .navigation ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px;
+        }
+
+        .navigation li {
+            margin-bottom: 10px;
+            margin-bottom: 25px;
+            border-radius: 50%;
+            text-align: center;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 2px;
+            padding: 2px;
+            background-color: rgb(143, 73, 73);
+            transition: all 0.3s ease;
+            border-radius: 90%;
+            text-align: center;
+        }
+
+        .navigation a:hover {
+            color: #562B0C;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 80%;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-left: 15%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            position: relative;
+            text-align: center;
+            width: 100%;
+            background-color: #562B0C;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .title img {
+            width: 100%;
+            height: auto;
+            filter: blur(4px);
+            border-radius: 8px;
+        }
+
+        .title-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+            font-size: 50px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+.research {
+            position: relative;
+            text-align: center;
+            width: 100%;
+            background-color: #562B0C;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .research img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .research-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 32px;
+            font-family: Cambria, serif;
+        }
+
+        .col-sm-4 {
+            width: 30%;
+            box-sizing: border-box;
+        
+            text-align: center;
+            position: relative;
+            top: 10px;
+  left: 20px;
+            
+        }
+
+        .col-sm-4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            border-radius: 8px;
+        }
+
+        .col-sm-4 .description {
+            width: 200%; /* Adjusted width for description */
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h4 {
+            font-size: 24px;
+            color: #303030;
+            margin: 10px 0;
+        }
+
+        p {
+            color: #818181;
+        }
+        .footer {
+  position:fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:#562B0C;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <!-- Include your navigation bar here -->
+            <img class="logo" src="liblogo.png" alt="Your Library Logo">
+            <ul>
+                <li><a href="LibraryHome.html">Home</a></li>
+                <li><a href="UserAccount.html">User Account</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="facilities.html">Facilities & Services</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="Collection.html">Collection</a></li>
+                <li><a href="ResearchSupport.html">Research Support</a></li>
+                <li><a href="loanbook.html">Loan Book</a></li>
+                <li><a href="returnbook.html">Return Book</a></li>
+                <li><a href="addbook.html">Add Book</a></li>
+                <li><a href="survey.html">Survey</a></li>
+            </ul>
+        </div>
+        <div id="services" class="content">
+            <div class="title">
+                <img src="title.jpg" alt="Title size:100px">
+                <div class="title-overlay">Research Support</div>
+            </div>
+ <div class="research">
+            <div class="col-sm-4">
+                <img src="training.jpg" alt="Loan Books">
+                <div class="description">
+                    <h4>Research Support Training</h4>
+                    <p>The Leisure Library offers Research Support Training and
+ Workshops for students, researchers, academicians, and the public. This includes free
+ workshops, paid workshops for the public or specific modules, and on-demand training. 
+Our aim is to enhance research skills and knowledge dissemination.
+</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="Forum.jpg" alt="Return Books">
+                <div class="description">
+                    <h4>Community Forum</h4>
+                    <p>Connect with fellow researchers in our community forum. Share insights, seek advice, and engage in discussions
+ to foster collaboration and knowledge exchange.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="Tips.jpg" alt="Job Done">
+                <div class="description">
+                    <h4>Tips on How to Support Predatory Journals</h4>
+                    <p>Navigate the complex landscape of scholarly publishing. Access valuable tips on 
+identifying and avoiding predatory journals, ensuring the credibility and impact of your research.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="citations.jpg" alt="Green">
+                <div class="description">
+                    <h4>Journal Citation Report</h4>
+                    <p>Explore the impact of journals in your field using our Journal Citation Report. Access data on citation metrics,
+ journal rankings, and make informed decisions on where to publish your research.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="Guide.jpg" alt="Certified">
+                <div class="description">
+                    <h4>Publishing Guide</h4>
+                    <p>Navigate the publishing process seamlessly with our Publishing Guide. From manuscript preparation to submission, peer review, 
+and post-publication, we provide step-by-step guidance</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="Research.jpg" alt="Hard Work">
+                <div class="description">
+                    <h4 style="color:#303030;">Research Tools</h4>
+                    <p>Empower your research journey with our suite of research tools. From reference management to data analysis, we offer a range of tools to streamline your workflow.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<section class="footer">
+    <p style="color: white;">Leisure Library Sdn. Bhd. |&#169 2023 CSF3133 Net,LLC All Rights Reserved.</p>
+    </footer>
+</html>

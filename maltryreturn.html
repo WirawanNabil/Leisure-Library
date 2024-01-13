@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loan Book</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="style_wani.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #return-buttons {
+            margin-bottom: 20px;
+        }
+
+        #return-results {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .return-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .return-info {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+
+        .return-info p {
+            margin: 0;
+        }
+
+        .return-button {
+            background-color: #337ab7;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .overdue {
+            color: #d9534f;
+        }
+
+        .countdown {
+            color: #f39c12;
+        }
+    </style>
+</head>
+<h1>Return Book Page</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    <a class="navbar-brand" href="#myPage"><img src="kopiko23.png" width="35" position="top right" alt="logo"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="LibraryHome.html">Home</a></li>
+        <li><a href="bookinfo.html">User Account</a></li>
+        <li><a href="AboutUs.html">About Us</a></li>
+        <li><a href="facilities.html">Facilities & Services</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="Collection.html">Collection</a></li>
+        <li><a href="#Research Support">Research Support</a></li>
+        <li><a href="loanbook.html">Loan Book</a></li>
+        <li><a href="returnbook.html">Return Book</a></li>
+        <li><a href="addbook.html">Add Book</a></li>
+        <li><a href="bookinfo.html">Book Info</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<h1>Return Book Page</h1>
+
+<div id="return-buttons">
+    <button onclick="showCurrentlyBorrowed()">Currently Borrowed</button>
+    <button onclick="showOverdue()">Overdue</button>
+</div>
+
+<div id="return-results">
+    <!-- Results will be displayed here -->
+</div>
+
+<script>
+    function showCurrentlyBorrowed() {
+        showReturnTable('currentlyBorrowed');
+    }
+
+    function showOverdue() {
+        showReturnTable('overdue');
+    }
+
+    function showReturnTable(type) {
+        const returnResultsDiv = document.getElementById('return-results');
+        returnResultsDiv.innerHTML = "";
+
+        // Retrieve the stored books from local storage
+        const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
+
+        // Filter books based on the borrowing status and type
+        const filteredBooks = storedBooks.filter(book =>
+            (type === 'currentlyBorrowed' && book.borrowed && !isOverdue(book.borrowedDate)) ||
+            (type === 'overdue' && book.borrowed && isOverdue(book.borrowedDate))
+        );
+
+        // Display the filtered books in decorated boxes with separation
+        filteredBooks.forEach(book => {
+            const isOverdueBook = isOverdue(book.borrowedDate);
+            const countdown = isOverdueBook ? 'Overdue' : calculateCountdown(book.borrowedDate);
+
+            returnResultsDiv.innerHTML += `
+                <div class="return-box ${isOverdueBook ? 'overdue' : ''}">
+                    <div class="return-info">
+                        <p><strong>Title:</strong> ${book.title}</p>
+                        <p><strong>Category:</strong> ${book.category}</p>
+                        <p><strong>Writer:</strong> ${book.writer}</p>
+                        <p><strong>Borrowed Date:</strong> ${formatDate(book.borrowedDate)}</p>
+                        <p class="countdown"><strong>Countdown:</strong> ${countdown}</p>
+                        <button class="return-button" onclick="returnBook('${book.title}')">Return Book</button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function returnBook(title) {
+        // Retrieve the stored books from local storage
+        const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
+
+        // Find the book to return
+        const bookToReturn = storedBooks.find(book => book.title === title);
+
+        if (bookToReturn) {
+            // Update borrowed status and date
+            bookToReturn.borrowed = false;
+            bookToReturn.borrowedDate = null;
+
+            // Save the updated array back to local storage
+            localStorage.setItem('books', JSON.stringify(storedBooks));
+
+            // Display a confirmation message (you can replace this with your own UI update logic)
+            alert(`Returned book: ${title}`);
+            // Refresh the displayed table after returning a book
+            showReturnTable('currentlyBorrowed');
+        } else {
+            alert(`Book not found: ${title}`);
+        }
+    }
+
+    function isOverdue(borrowedDate) {
+        if (!borrowedDate) {
+            return false;
+        }
+
+        const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
+        const currentDate = new Date();
+        return currentDate - new Date(borrowedDate) > oneWeekInMilliseconds;
+    }
+
+    function calculateCountdown(borrowedDate) {
+        const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
+        const currentDate = new Date();
+        const remainingTime = oneWeekInMilliseconds - (currentDate - new Date(borrowedDate));
+
+        const days = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
+        const hours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+        const minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+
+        return `${days} days, ${hours} hours, ${minutes} minutes`;
+    }
+
+    function formatDate(date) {
+        return date ? new Date(date).toLocaleDateString() : 'N/A';
+    }
+
+    // Show the "Currently Borrowed" table by default
+    showCurrentlyBorrowed();
+</script>
+
+</body>
+</html>

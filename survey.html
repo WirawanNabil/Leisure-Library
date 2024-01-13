@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SURVEY</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* Set background image */
+            background-image: url('studyhall1.jpg');
+
+            /* Set background size to cover the entire viewport */
+            background-size: cover;
+
+            /* Set background attachment to fixed if you want a fixed background */
+            background-attachment: fixed;
+
+            /* Set background position to center */
+            background-position: center;
+
+            /* Set background repeat to no-repeat */
+            background-repeat: no-repeat;
+
+            /* Add some styles to the body, so the content is readable */
+            color: #000000;
+
+        }
+    
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+    
+        .navigation {
+            width: 15%;
+            background-color: #562B0C;
+            padding: 1px;
+            box-sizing: border-box;
+            height: 100%;
+            position: fixed;
+            
+        }
+    
+        .navigation ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px;
+            
+        }
+    
+        .navigation li {
+            margin-bottom: 10px;
+            margin-bottom: 25px;
+            border-radius: 50%;
+            text-align: center;
+        }
+    
+        .navigation a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 2px;
+            padding: 2px;
+            background-color: rgb(143, 73, 73);
+            transition: all 0.3s ease;
+            border-radius:  90%; 
+            text-align: center;
+        }
+    
+        .navigation a:hover {
+            color: #562B0C;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius:  80%; 
+        }
+    
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-left: 60%;
+            width: 100%;
+        }
+
+        .survey-container {
+            max-width: 700%;
+            width: 670%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        #comments {
+            width: 100%;
+            height: 90px;
+        }
+
+        #submitBtn {
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .comment-bubble {
+            background-color: #e0e0e0;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 10%;
+            display: inline-block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <main>
+    <div class="container">
+        <div class="navigation">
+            <img class="logo" src="liblogo.png" alt="Your Library Logo">
+            <ul>
+                <li><a href="LibraryHome.html">Home</a></li>
+                <li><a href="bookinfo.html">User Account</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="facilities.html">Facilities & Services</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="Collection.html">Collection</a></li>
+                <li><a href="ResearchSupport.html">Research Support</a></li>
+                <li><a href="loanbook.html">Loan Book</a></li>
+                <li><a href="returnbook.html">Return Book</a></li>
+                <li><a href="addbook.html">Add Book</a></li>
+                <li><a href="survey.html">Survey</a></li>
+
+            </ul>
+        </div>
+        <div class="content">
+<div class="jumbotronsurvey text center">
+<h1>Survey</h1>
+</div>
+<div class="survey-container">
+    <h2>Survey</h2>
+    <form id="surveyForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <div class="comment-section">
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" required></textarea>
+        </div>
+
+        <button type="button" id="submitBtn" onclick="submitForm()">Submit</button>
+    </form>
+
+    <div id="commentInsertSection">
+        <!-- Comments will be inserted here dynamically -->
+    </div>
+</div>
+
+<script>
+    // Load existing comments from localStorage on page load
+    window.onload = function () {
+        loadComments();
+    };
+
+    function submitForm() {
+        // Get form data
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var comments = document.getElementById('comments').value;
+
+        // Create comment bubble element
+        var commentBubble = document.createElement('div');
+        commentBubble.className = 'comment-bubble';
+        commentBubble.innerHTML = '<strong>' + name + ':</strong> ' + comments;
+
+        // Append comment bubble to the comment insert section
+        document.getElementById('commentInsertSection').appendChild(commentBubble);
+
+        // Save comment to localStorage
+        saveComment(name, comments);
+
+        // Reset form fields
+        document.getElementById('surveyForm').reset();
+    }
+
+    function saveComment(name, comment) {
+        // Load existing comments from localStorage
+        var existingComments = JSON.parse(localStorage.getItem('comments')) || [];
+
+        // Add new comment
+        existingComments.push({ name: name, comment: comment });
+
+        // Save updated comments back to localStorage
+        localStorage.setItem('comments', JSON.stringify(existingComments));
+    }
+
+    function loadComments() {
+        // Load existing comments from localStorage
+        var existingComments = JSON.parse(localStorage.getItem('comments')) || [];
+
+        // Display existing comments
+        var commentSection = document.getElementById('commentInsertSection');
+        for (var i = 0; i < existingComments.length; i++) {
+            var commentBubble = document.createElement('div');
+            commentBubble.className = 'comment-bubble';
+            commentBubble.innerHTML = '<strong>' + existingComments[i].name + ':</strong> ' + existingComments[i].comment;
+            commentSection.appendChild(commentBubble);
+        }
+    }
+</script>
+<section class="footer">
+    <p>Leisure Library Sdn. Bhd. |&#169 2023 CSF3133 Net,LLC All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

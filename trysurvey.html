@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .survey-container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        #comments {
+            width: 100%;
+            height: 100px;
+        }
+
+        #submitBtn {
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .comment-bubble {
+            background-color: #e0e0e0;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="survey-container">
+    <h2>Survey</h2>
+    <form id="surveyForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <div class="comment-section">
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" required></textarea>
+        </div>
+
+        <button type="button" id="submitBtn" onclick="submitForm()">Submit</button>
+    </form>
+
+    <div id="commentInsertSection">
+        <!-- Comments will be inserted here dynamically -->
+    </div>
+</div>
+
+<script>
+    // Load existing comments from localStorage on page load
+    window.onload = function () {
+        loadComments();
+    };
+
+    function submitForm() {
+        // Get form data
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var comments = document.getElementById('comments').value;
+
+        // Create comment bubble element
+        var commentBubble = document.createElement('div');
+        commentBubble.className = 'comment-bubble';
+        commentBubble.innerHTML = '<strong>' + name + ':</strong> ' + comments;
+
+        // Append comment bubble to the comment insert section
+        document.getElementById('commentInsertSection').appendChild(commentBubble);
+
+        // Save comment to localStorage
+        saveComment(name, comments);
+
+        // Reset form fields
+        document.getElementById('surveyForm').reset();
+    }
+
+    function saveComment(name, comment) {
+        // Load existing comments from localStorage
+        var existingComments = JSON.parse(localStorage.getItem('comments')) || [];
+
+        // Add new comment
+        existingComments.push({ name: name, comment: comment });
+
+        // Save updated comments back to localStorage
+        localStorage.setItem('comments', JSON.stringify(existingComments));
+    }
+
+    function loadComments() {
+        // Load existing comments from localStorage
+        var existingComments = JSON.parse(localStorage.getItem('comments')) || [];
+
+        // Display existing comments
+        var commentSection = document.getElementById('commentInsertSection');
+        for (var i = 0; i < existingComments.length; i++) {
+            var commentBubble = document.createElement('div');
+            commentBubble.className = 'comment-bubble';
+            commentBubble.innerHTML = '<strong>' + existingComments[i].name + ':</strong> ' + existingComments[i].comment;
+            commentSection.appendChild(commentBubble);
+        }
+    }
+</script>
+
+</body>
+</html>

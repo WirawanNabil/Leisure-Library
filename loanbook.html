@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOAN BOOK</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* Set background image */
+            background-image: url('studyhall1.jpg');
+
+            /* Set background size to cover the entire viewport */
+            background-size: cover;
+
+            /* Set background attachment to fixed if you want a fixed background */
+            background-attachment: fixed;
+
+            /* Set background position to center */
+            background-position: center;
+
+            /* Set background repeat to no-repeat */
+            background-repeat: no-repeat;
+
+            /* Add some styles to the body, so the content is readable */
+            color: #000000;
+        }
+    
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    
+        .container {
+            display: flex;
+        }
+    
+        .navigation {
+            width: 15%;
+            background-color: #562B0C;
+            padding: 1px;
+            box-sizing: border-box;
+            height: 100%;
+            position: fixed;
+            
+        }
+    
+        .navigation ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px;
+            
+        }
+    
+        .navigation li {
+            margin-bottom: 10px;
+            margin-bottom: 25px;
+            border-radius: 50%;
+            text-align: center;
+        }
+    
+        .navigation a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 2px;
+            padding: 2px;
+            background-color: rgb(143, 73, 73);
+            transition: all 0.3s ease;
+            border-radius:  90%; 
+            text-align: center;
+        }
+    
+        .navigation a:hover {
+            color: #562B0C;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius:  80%; 
+        }
+    
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-left: 50%;
+        }
+    
+        #search-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            width: 300%;
+        }
+    
+        #search-results {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            width: 290%;
+        }
+    
+        .result-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+    
+        .result-info {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+    
+        .result-info p {
+            margin: 0;
+        }
+    </style>
+    
+</head>
+<body>
+    <main>
+    <div class="container">
+        <div class="navigation">
+            <img class="logo" src="liblogo.png" alt="Your Library Logo">
+            <ul>
+                <li><a href="LibraryHome.html">Home</a></li>
+                <li><a href="bookinfo.html">User Account</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="facilities.html">Facilities & Services</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="Collection.html">Collection</a></li>
+                <li><a href="ResearchSupport.html">Research Support</a></li>
+                <li><a href="loanbook.html">Loan Book</a></li>
+                <li><a href="returnbook.html">Return Book</a></li>
+                <li><a href="addbook.html">Add Book</a></li>
+                <li><a href="survey.html">Survey</a></li>
+
+            </ul>
+        </div>
+        <div class="content">
+            <div class="jumbotronloan text center">
+            <h1>Loan Book</h1>
+            </div>
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Enter book title">
+                <select id="category-select">
+                    <option value="all">All Categories</option>
+                    <option value="fiction">Fiction</option>
+                    <option value="non-fiction">Non-Fiction</option>
+                    <option value="science">Science</option>
+                    <!-- Add more categories as needed -->
+                </select>
+                <label for="sort-select">Sort By:</label>
+                <select id="sort-select">
+                    <option value="title">Title</option>
+                    <option value="author">Author</option>
+                    <option value="date">Publish Date</option>
+                    <!-- Add more sorting options as needed -->
+                </select>
+                <button type="button" onclick="searchBooks()">Search</button>
+            </form>
+            
+            <div id="search-results">
+                <!-- Results will be displayed here -->
+            </div>
+            
+        </main>
+            <script>
+                function searchBooks() {
+                    const searchInput = document.getElementById('search-input').value.toLowerCase();
+                    const category = document.getElementById('category-select').value;
+                    const sortOption = document.getElementById('sort-select').value;
+            
+                    // Retrieve the stored books from local storage
+                    const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
+            
+                    // Filter books based on search input and category
+                    const filteredBooks = storedBooks.filter(book =>
+                        (book.title.toLowerCase().includes(searchInput) || searchInput === "") &&
+                        (category === 'all' || book.category === category)
+                    );
+            
+                    // Sort books based on the selected sort option
+                    filteredBooks.sort((a, b) => {
+                        if (sortOption === 'title') {
+                            return a.title.localeCompare(b.title);
+                        } else if (sortOption === 'author') {
+                            return a.writer.localeCompare(b.writer);
+                        } else if (sortOption === 'date') {
+                            // Add date sorting logic if available
+                        }
+                    });
+            
+                    // Display the filtered and sorted books in decorated boxes with separation
+                    const resultsDiv = document.getElementById('search-results');
+                    resultsDiv.innerHTML = "";
+                    filteredBooks.forEach(book => {
+                        resultsDiv.innerHTML += `
+                            <div class="result-box">
+                                <div class="result-info">
+                                    <p><strong>Title:</strong> ${book.title}</p>
+                                    <p><strong>Category:</strong> ${book.category}</p>
+                                    <p><strong>Writer:</strong> ${book.writer}</p>
+                                    <button class="borrow-button" onclick="borrowBook('${book.title}')">Borrow</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+            
+                function borrowBook(title) {
+                    // Add logic here to handle the borrowing process, e.g., update the book's status in the database
+                    alert(`Borrowed book: ${title}`);
+                }
+            
+                function borrowBook(title) {
+                // Retrieve the stored books from local storage
+                const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
+            
+                // Find the book to borrow
+                const bookToBorrow = storedBooks.find(book => book.title === title);
+            
+                if (bookToBorrow) {
+                    // Update borrowed status and date
+                    bookToBorrow.borrowed = true;
+                    bookToBorrow.borrowedDate = new Date();
+            
+                    // Save the updated array back to local storage
+                    localStorage.setItem('books', JSON.stringify(storedBooks));
+            
+                    // Display a confirmation message (you can replace this with your own UI update logic)
+                    alert(`Borrowed book: ${title}`);
+                } else {
+                    alert(`Book not found: ${title}`);
+                }
+            }
+                
+            </script>
+            <section class="footer">
+                <p>Leisure Library Sdn. Bhd. |&#169 2023 CSF3133 Net,LLC All Rights Reserved.</p>
+                </footer>
+            </body>
+            </html>
+
+

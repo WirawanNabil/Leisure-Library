@@ -1,0 +1,102 @@
+<!-- add_book.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style_wani.css">
+</head>
+<body>
+
+<h1>Add Book</h1>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+      <a class="navbar-brand" href="#myPage"><img src="kopiko23.png" width="35" position="top right" alt="logo"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="LibraryHome.html">Home</a></li>
+          <li><a href="bookinfo.html">User Account</a></li>
+          <li><a href="AboutUs.html">About Us</a></li>
+          <li><a href="facilities.html">Facilities & Services</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+          <li><a href="Collection.html">Collection</a></li>
+          <li><a href="#Research Support">Research Support</a></li>
+          <li><a href="loanbook.html">Loan Book</a></li>
+          <li><a href="bookinfo.html">Book Info</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+  <br>
+<form id="add-book-form">
+    <label for="title">Title:</label>
+    <input type="text" id="title" required>
+
+    <label for="category">Category:</label>
+    <select id="category" required>
+        <option value="fiction">Fiction</option>
+        <option value="non-fiction">Non-Fiction</option>
+        <option value="science">Science</option>
+        <!-- Add more categories as needed -->
+    </select>
+
+    <label for="writer">Writer's Name:</label>
+    <input type="text" id="writer" required>
+
+    <button type="button" onclick="addBook()">Add Book</button>
+</form>
+
+<p><a href="maltrysearchadd.html">Go to Loan Book Page</a></p>
+
+<script>
+    function addBook() {
+    const title = document.getElementById('title').value;
+    const category = document.getElementById('category').value;
+    const writer = document.getElementById('writer').value;
+
+    // Create an object representing the book
+    const book = {
+        title: title,
+        category: category,
+        writer: writer,
+        borrowed: false, // Initial borrowing status
+        borrowedDate: null, // Initial borrowed date
+    };
+
+    // Get the existing books from local storage or initialize an empty array
+    const existingBooks = JSON.parse(localStorage.getItem('books')) || [];
+
+    // Add the new book to the array
+    existingBooks.push(book);
+
+    // Save the updated array back to local storage
+    localStorage.setItem('books', JSON.stringify(existingBooks));
+
+    // Display a confirmation message (you can replace this with your own UI update logic)
+    alert(`Book added!\nTitle: ${title}\nCategory: ${category}\nWriter: ${writer}`);
+}
+
+    
+</script>
+
+</body>
+</html>

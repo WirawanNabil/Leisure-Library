@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD BOOK</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* Set background image */
+            background-image: url('studyhall1.jpg');
+
+            /* Set background size to cover the entire viewport */
+            background-size: cover;
+
+            /* Set background attachment to fixed if you want a fixed background */
+            background-attachment: fixed;
+
+            /* Set background position to center */
+            background-position: center;
+
+            /* Set background repeat to no-repeat */
+            background-repeat: no-repeat;
+
+            /* Add some styles to the body, so the content is readable */
+            color: #000000;
+        }
+    
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    
+        .container {
+            display: flex;
+        }
+    
+        .navigation {
+            width: 15%;
+            background-color: #562B0C;
+            padding: 1px;
+            box-sizing: border-box;
+            height: 100%;
+            position: fixed;
+        }
+    
+        .navigation ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px;
+            
+        }
+    
+        .navigation li {
+            margin-bottom: 10px;
+            margin-bottom: 25px;
+            border-radius: 50%;
+            text-align: center;
+        }
+    
+        .navigation a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 2px;
+            padding: 2px;
+            background-color: rgb(143, 73, 73);
+            transition: all 0.3s ease;
+            border-radius:  90%; 
+            text-align: center;
+        }
+    
+        .navigation a:hover {
+            color: #562B0C;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius:  80%; 
+        }
+    
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-left: 35%;
+        }
+
+        .search-container {
+            position: relative;
+            margin: 20px;
+            width: 100%;
+        }
+
+        /* Styling for the search input */
+        .search-input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        /* Styling for the search button */
+        .search-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #add-book-form{
+          width: 152%;
+          color: white;
+          background-color: rgb(66, 44, 44);
+        }
+        </style>
+
+  <body>
+    <main>
+    <div class="container">
+
+        <div class="navigation">
+            <img class="logo" src="liblogo.png" alt="Your Library Logo">
+            <ul>
+                <li><a href="LibraryHome.html">Home</a></li>
+                <li><a href="bookinfo.html">User Account</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="facilities.html">Facilities & Services</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="Collection.html">Collection</a></li>
+                <li><a href="ResearchSupport.html">Research Support</a></li>
+                <li><a href="loanbook.html">Loan Book</a></li>
+                <li><a href="returnbook.html">Return Book</a></li>
+                <li><a href="addbook.html">Add Book</a></li>
+                <li><a href="survey.html">Survey</a></li>
+
+            </ul>
+        </div>
+        <div class="content">
+          <div class="jumbotronadd text center">
+          <h1>Add Book</h1>
+          </div>
+          <div class="search-container">
+<form id="add-book-form">
+    <label for="title">Title:</label>
+    <input type="text" id="title" required>
+
+    <label for="category">Category:</label>
+    <select id="category" required>
+        <option value="fiction">Fiction</option>
+        <option value="non-fiction">Non-Fiction</option>
+        <option value="science">Science</option>
+        <!-- Add more categories as needed -->
+    </select>
+
+    <label for="writer">Writer's Name:</label>
+    <input type="text" id="writer" required>
+
+    <button type="button" onclick="addBook()">Add Book</button>
+</form>
+
+<p><a href="loanbook.html" style="background-color: white;">Go to Loan Book Page</a></p>
+
+</div>
+</main>
+<script>
+    function addBook() {
+        const title = document.getElementById('title').value;
+        const category = document.getElementById('category').value;
+        const writer = document.getElementById('writer').value;
+
+        // Create an object representing the book
+        const book = {
+            title: title,
+            category: category,
+            writer: writer
+        };
+
+        // Get the existing books from local storage or initialize an empty array
+        const existingBooks = JSON.parse(localStorage.getItem('books')) || [];
+
+        // Add the new book to the array
+        existingBooks.push(book);
+
+        // Save the updated array back to local storage
+        localStorage.setItem('books', JSON.stringify(existingBooks));
+
+        // Display a confirmation message (you can replace this with your own UI update logic)
+        alert(`Book added!\nTitle: ${title}\nCategory: ${category}\nWriter: ${writer}`);
+    }
+</script>
+<section class="footer">
+  <p>Leisure Library Sdn. Bhd. |&#169 2023 CSF3133 Net,LLC All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

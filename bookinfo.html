@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER ACCOUNT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* Set background image */
+            background-image: url('studyhall1.jpg');
+
+            /* Set background size to cover the entire viewport */
+            background-size: cover;
+
+            /* Set background attachment to fixed if you want a fixed background */
+            background-attachment: fixed;
+
+            /* Set background position to center */
+            background-position: center;
+
+            /* Set background repeat to no-repeat */
+            background-repeat: no-repeat;
+
+            /* Add some styles to the body, so the content is readable */
+            color: #000000;
+        }
+    
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    
+        .container {
+            display: flex;
+        }
+    
+        .navigation {
+            width: 15%;
+            background-color: #562B0C;
+            padding: 1px;
+            box-sizing: border-box;
+            height: 100%;
+            position: fixed;
+        }
+    
+        .navigation ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px;
+            
+        }
+    
+        .navigation li {
+            margin-bottom: 10px;
+            margin-bottom: 25px;
+            border-radius: 50%;
+            text-align: center;
+        }
+    
+        .navigation a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 2px;
+            padding: 2px;
+            background-color: rgb(143, 73, 73);
+            transition: all 0.3s ease;
+            border-radius:  90%; 
+            text-align: center;
+        }
+    
+        .navigation a:hover {
+            color: #562B0C;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius:  80%; 
+        }
+    
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-left: 23%;
+        }
+        </style>
+</head>
+<body>
+    <main>
+  <div class="container">
+      <div class="navigation">
+          <img class="logo" src="liblogo.png" alt="Your Library Logo">
+          <ul>
+              <li><a href="LibraryHome.html">Home</a></li>
+              <li><a href="bookinfo.html">User Account</a></li>
+              <li><a href="AboutUs.html">About Us</a></li>
+              <li><a href="facilities.html">Facilities & Services</a></li>
+              <li><a href="faqs.html">FAQs</a></li>
+              <li><a href="Collection.html">Collection</a></li>
+              <li><a href="ResearchSupport.html">Research Support</a></li>
+              <li><a href="loanbook.html">Loan Book</a></li>
+              <li><a href="returnbook.html">Return Book</a></li>
+              <li><a href="addbook.html">Add Book</a></li>
+              <li><a href="survey.html">Survey</a></li>
+          </ul>
+      </div>
+      <div class="content">
+
+    <div class="jumbotron text-center">
+        <h1>Welcome, User!</h1>
+        <p>Remember to return the books that you've already borrowed from the library!</p>
+        <p>Check your books due date and pending fine for late returning.</p>
+        <p>Enjoy your readings! <span class="glyphicon glyphicon-smile"></span></p>
+      </div>
+      
+
+      <div id="UserAccount" class="container-fluiduser">
+        <div class="left-side3">
+            <h2>Currently Borrowed Books</h2>
+      <div class="table-container">
+        <div id="BorrowedBooks" class="left-side1">
+        <table border="1">
+<table id="currentlyBorrowedTable">
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Borrow Date</th>
+            <th>Return Date</th>
+        </tr>
+    </thead>
+    <tbody id="currentlyBorrowedTableBody">
+        <!-- This section will be populated dynamically with JavaScript -->
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="right-side3">
+    <h2>Borrowed Books History</h2>
+    <div id="ReturnBooks" class="right-side1">
+    <div class="table-container">
+      <table border="1">
+<table id="historyTable">
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Borrow Date</th>
+            <th>Return Date</th>
+
+        </tr>
+    </thead>
+    <tbody id="historyTableBody">
+        <!-- This section will be populated dynamically with JavaScript -->
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadCurrentlyBorrowedBooks();
+        loadBorrowedBooksHistory();
+    });
+
+    function loadCurrentlyBorrowedBooks() {
+        var records = JSON.parse(localStorage.getItem('borrowedBooks')) || [];
+        var currentlyBorrowedTableBody = document.getElementById('currentlyBorrowedTableBody');
+
+        records.forEach(function(record) {
+            var newRow = document.createElement('tr');
+            if (!record.returnDate) {
+                newRow.innerHTML = '<td>' + record.isbn + '</td>' +
+                                   '<td>' + record.title + '</td>' +
+                                   '<td>' + record.studentId + '</td>' +
+                                   '<td>' + record.studentName + '</td>' +
+                                   '<td>' + record.borrowDate + '</td>';
+                                   '<td>' + record.returnDate + '</td>';
+                currentlyBorrowedTableBody.appendChild(newRow);
+            }
+        });
+    }
+
+    function loadBorrowedBooksHistory() {
+        var records = JSON.parse(localStorage.getItem('borrowedBooks')) || [];
+        var historyTableBody = document.getElementById('historyTableBody');
+
+        records.forEach(function(record) {
+            var newRow = document.createElement('tr');
+            if (record.returnDate) {
+                newRow.innerHTML = '<td>' + record.isbn + '</td>' +
+                                   '<td>' + record.title + '</td>' +
+                                   '<td>' + record.studentId + '</td>' +
+                                   '<td>' + record.studentName + '</td>' +
+                                   '<td>' + record.borrowDate + '</td>';
+                                   '<td>' + record.returnDate + '</td>';
+                historyTableBody.appendChild(newRow);
+            }
+        });
+    }
+</script>
+<section class="footer">
+  <p>Leisure Library Sdn. Bhd. |&#169 2023 CSF3133 Net,LLC All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

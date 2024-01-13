@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+    
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    
+        .container {
+            display: flex;
+        }
+    
+        .navigation {
+            width: 302px;
+            background-color: #562B0C;
+            padding: 1px;
+            box-sizing: border-box;
+            position: fixed;
+        }
+    
+        .navigation ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px;
+            
+        }
+    
+        .navigation li {
+            margin-bottom: 10px;
+            margin-bottom: 30px;
+            border-radius: 50%;
+            text-align: center;
+        }
+    
+        .navigation a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 2px;
+            padding: 2px;
+            background-color: rgb(143, 73, 73);
+            transition: all 0.3s ease;
+            border-radius:  90%; 
+            text-align: center;
+        }
+    
+        .navigation a:hover {
+            color: #562B0C;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius:  80%; 
+        }
+    
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        </style>
+
+  </head>
+<body>
+    <main>
+    <div class="container">
+        <div class="navigation">
+            <img class="logo" src="liblogo.png" alt="Your Library Logo">
+            <ul>
+                <li><a href="LibraryHome.html">Home</a></li>
+                <li><a href="bookinfo.html">User Account</a></li>
+                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="facilities.html">Facilities & Services</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="Collection.html">Collection</a></li>
+                <li><a href="#Research Support">Research Support</a></li>
+                <li><a href="loanbook.html">Loan Book</a></li>
+                <li><a href="returnbook.html">Return Book</a></li>
+                <li><a href="addbook.html">Add Book</a></li>
+
+            </ul>
+        </div>
+<div class="content">
+    <div class="jumbotron text-center">
+    <h1>Leisure Library</h1>
+
+    <img src="studyhall1.jpg" alt="Description of the image" style="height: 500px; width: 900px;">
+
+</div>
+<div class="login" >
+        <h2>Log In</h2>
+        <label>Username : </label><br><input type="text" placeholder="Enter Username"name="username"required><br>
+        <label>Password : </label><br><input type="password"placeholder="Enter Password" name="password"required><br><br><button type="submit">Login</button>
+        <br>
+        </div>
+        <div class="kanangambar">
+        <h2>Latest News!</h2>
+        <img src="gotongroyong.jpg" alt="Gotong Royong Perdana" class="img-responsive" style="height: 150px; ">
+        <div class="ayatgambar">
+        <h3>Gotong Royong Perdana Programme</h3>
+        <p><strong>10 December 2023</strong> - Gotong Royong Perdana Programme was organized by Leisure Library Management. This programme was held from 8.00 am until 4.30 pm. Well done and congratulations to all Leisure Library residents for implementing this Gotong Royong Perdana Programme.</p>
+    </div>
+    </div>
+
+    <div class="kanangambar2">
+    <img src="grandopening.jpg" alt="Grand Opening" class="img-responsive" style="height: 100px; ">
+    <div class="ayatgambar2">
+    <h3>Leisure Library Grand Opening</h3>
+     <p><strong>25 November 2023</strong> - The grand opening of Leisure Library was held in order to notify the community that their awaited nearest library from their home is finally here. This grand opening was organized by Leisure Library Management and collaboration with the National Library Association (NLA).</p>
+    </div>
+    </div>
+    
+  
+  <!-- Container (About Section) -->
+  <div id="Home" class="container-fluid">
+    <div class="left-side">
+  <h2>Leisure Library Operating Hours </h2>
+  <p>Semester, Study & Examination Weeks</p>
+  <ul>
+    <li>Monday to Friday : 8.00 am - 10.00 pm</li>
+    <li>Friday : 8.00 am - 6.00 pm</li>
+    <li>Saturday & Sunday : 9.00 am - 5.00 pm</li>
+  </ul>
+  <p>[Friday : 12.30 pm - 2.30 pm (Temporarily Closed for Friday Prayer)]</p>
+</div>
+
+<div class="right-side">
+  <h2>Contact Us Here!</h2>
+  <span class="glyphicon glyphicon-earphone"></span>
+  <span>+609 6684185</span><br>
+  <span class="glyphicon glyphicon-phone"></span>
+  <span>+6018-4650723</span><br>
+  <span class="glyphicon glyphicon-envelope"></span>
+  <span>leisurelibrary@edu.com</span>
+</div>
+
+</div>
+  <div class="kirigambar">
+    <div class="left-side">
+        <h2>Where To Find Us?</h2>
+        <img src="wheretofindus.jpg" class="w3-image w3-greyscale-min" style="width:200px">
+    </div>
+        <div class="ayatgambar3">
+        <p>Leisure Library</p>
+        <span> Ground Floor No.1026, Jln Perhentian Bas, Pulau Sebang</span>
+        <p>7107, Pulau Sebang, Melaka</p>
+        </div>
+
+</div>
+
+
+</main>
+  <script>
+  $(document).ready(function(){
+    // Add smooth scrolling to all links in navbar + footer link
+    $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+      // Make sure this.hash has a value before overriding default behavior
+      if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+  
+        // Store hash
+        var hash = this.hash;
+  
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 900, function(){
+     
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
+        });
+      } // End if
+    });
+    
+    $(window).scroll(function() {
+      $(".slideanim").each(function(){
+        var pos = $(this).offset().top;
+  
+        var winTop = $(window).scrollTop();
+          if (pos < winTop + 600) {
+            $(this).addClass("slide");
+          }
+      });
+    });
+  })
+  </script>
+  
+    <section class="footer">
+    <p>Leisure Library Sdn. Bhd. |&#169 2023 CSF3133 Net,LLC All Rights Reserved.</p>
+    </footer>
+  
+  </body></html>
